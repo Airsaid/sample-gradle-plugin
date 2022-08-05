@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sample</string>
+    <string name="output">output</string>
+    <string name="sample_source_code_description">Display sample source code</string>
+    <string name="sample_basic_component_description">Display the basic component</string>
+    <string name="sample_document_description">It shows how you add a document by use Annotation:SampleDocument</string>
+    <string name="sample_all_components_description">Display all the component we have</string>
+
+    <string name="component_category">ComponentSample</string>
+    <string name="component_category_desc">Display how to use all different kinds of component</string>
+    <string name="component_sample1">Basic Component Usage</string>
+    <string name="component_sample1_desc">We will add three different component in order to support different function</string>
+    <string name="component_sample2">Document component</string>
+    <string name="component_sample2_desc">It shows how you add a document by use Annotation-SampleDocument</string>
+    <string name="component_sample3">Component source code</string>
+    <string name="component_sample3_desc">It shows all the source files in this package</string>
+    <string name="component_sample4">All component sample</string>
+    <string name="component_sample4_desc">It shows all the components we have.</string>
+    <string name="component_sample5">Fragment Sample</string>
+    <string name="component_sample5_desc">It shows all the components in fragment.</string>
+    <string name="sample_fragment_component_desc">It shows all the component in the fragment</string>
+
+    <string name="function_permission_sample1">Permission function</string>
+    <string name="function_permission_sample1_desc">Display how to request runtime permission by function extension</string>
+    <string name="function_permission_sample2">Permission (Fragment)</string>
+    <string name="function_permission_sample2_desc">Display When you in fragment how to request runtime permission by function extension</string>
+
+    <string name="sample_function">Function</string>
+    <string name="sample_function_description">It shows how we implements extras functions for our examples</string>
+    <string name="sample_function_permission_description">Display how we request runtime permission</string>
+
+    <string name="permission_granted">Permission:%s was granted</string>
+    <string name="permission_denied">Permission:%s was denied</string>
+
+    <string name="dialog">Dialog</string>
+    <string name="dialog_desc">Demonstrated you how to customize your own action processor</string>
+
+    <string name="dialog_sample1">Login Alert</string>
+    <string name="dialog_sample1_desc">An easy login alert dialog sample...</string>
+    <string name="dialog_sample2">Choose Colors</string>
+    <string name="dialog_sample2_desc">An easy multiple choice dialog sample...</string>
+
+
+    <string name="other">Others</string>
+    <string name="other_desc">one more other test cases</string>
+    <string name="other_sample1">Document sample</string>
+    <string name="other_sample1_desc">Demonstrated how to load a markdown document</string>
+    <string name="other_sample2">Source code sample</string>
+    <string name="other_sample2_desc">Demonstrated how to load a source code and highlight it</string>
+    <string name="other_sample3">Message output sample</string>
+    <string name="other_sample3_desc">Demonstrated how to use display system out stream</string>
+    <string name="other_sample4">TreeAdapter</string>
+    <string name="other_sample4_desc">Demonstrated all the storage files</string>
+    <string name="other_sample5">SourceCode</string>
+    <string name="other_sample5_desc">View the multi-level directory</string>
+    <string name="loading">Loading...</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sample_title">
+        <item>示例</item>
+        <item>文档</item>
+    </string-array>
+</resources>

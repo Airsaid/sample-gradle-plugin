@@ -1,0 +1,6 @@
+<resources>
+  <dimen name="sample_margin">16dp</dimen>
+  <dimen name="sample_padding">16dp</dimen>
+  <dimen name="sample_divider">0.8dp</dimen>
+  <dimen name="sample_toolbar_elevation">4dp</dimen>
+</resources>

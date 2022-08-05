@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal"
+  android:gravity="center_vertical"
+  android:paddingStart="@dimen/sample_margin"
+  android:paddingEnd="@dimen/sample_margin"
+  android:paddingTop="8dp"
+  android:paddingBottom="8dp">
+
+  <ImageView
+    android:id="@+id/imageFlagView"
+    android:layout_width="12dp"
+    android:layout_height="12dp"
+    android:src="@drawable/sample_folder_drag_selector"
+    tools:ignore="ContentDescription" />
+
+  <ImageView
+    android:id="@+id/imageFileType"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="8dp"
+    tools:ignore="ContentDescription" />
+
+  <TextView
+    android:id="@+id/fileName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+    android:singleLine="true"
+    android:ellipsize="end"
+    tools:text="@string/sample_source_code" />
+</LinearLayout>

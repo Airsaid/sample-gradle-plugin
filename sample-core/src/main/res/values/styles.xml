@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="Sample" />
+
+  <style name="Sample.AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+  <style name="Sample.AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

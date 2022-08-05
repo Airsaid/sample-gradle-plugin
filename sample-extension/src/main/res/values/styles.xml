@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="Sample.TransBottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+    <item name="android:windowFrame">@null</item>
+    <item name="android:windowIsFloating">true</item>
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:background">@android:color/transparent</item>
+    <item name="android:backgroundDimEnabled">false</item>
+  </style>
+
+  <style name="Sample.WebViewProgressBar">
+    <item name="web_firstDuration">2000</item>
+    <item name="web_firstMinDuration">1000</item>
+    <item name="web_secondDuration">6000</item>
+    <item name="web_firstProgress">70</item>
+    <item name="web_secondProgress">90</item>
+    <item name="web_thirdDuration">10000</item>
+    <item name="web_progressDrawable">@drawable/sample_web_progress_drawable</item>
+    <item name="web_max">100</item>
+  </style>
+
+  <style name="Sample.CurveChartViewCompat">
+    <item name="sample_curveColor">?colorPrimary</item>
+    <item name="sample_curveFillColor">?colorPrimaryDark</item>
+    <item name="sample_curveLabelTextSize">12sp</item>
+    <item name="sample_curveChartCount">5</item>
+    <item name="sample_curveStrokeWidth">1dp</item>
+  </style>
+
+  <style name="Sample.SlidingLayout">
+    <item name="sliding_weight">0.6</item>
+    <item name="android:orientation">vertical</item>
+  </style>
+</resources>

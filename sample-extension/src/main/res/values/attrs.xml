@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+  <declare-styleable name="RadioLayout">
+    <attr name="radio_items" format="reference" />
+  </declare-styleable>
+
+  <declare-styleable name="SeekLayout">
+    <attr name="seek_title" format="string" />
+    <attr name="android:progress" />
+    <attr name="android:min" />
+    <attr name="android:max" />
+  </declare-styleable>
+
+  <attr name="sampleBaseAttr" format="reference" />
+
+  <attr name="sampleMessageHeight" format="dimension" />
+
+  <attr name="webViewProgressBar" format="reference" />
+
+  <declare-styleable name="WebViewProgressBar">
+    <attr name="web_progressDrawable" format="reference" />
+    <attr name="web_normalDrawable" format="reference" />
+    <attr name="web_firstDuration" format="integer" />
+    <attr name="web_firstMinDuration" format="integer" />
+    <attr name="web_firstProgress" format="integer" />
+    <attr name="web_secondDuration" format="integer" />
+    <attr name="web_secondProgress" format="integer" />
+    <attr name="web_thirdDuration" format="integer" />
+    <attr name="web_progress" format="float" />
+    <attr name="web_max" format="integer" />
+    <attr name="web_min" format="integer" />
+  </declare-styleable>
+
+  <attr name="sampleCurveChartView" format="reference" />
+
+  <declare-styleable name="SampleCurveChartView">
+    <attr name="sample_curveColor" format="color" />
+    <attr name="sample_curveFillColor" format="color" />
+    <attr name="sample_curveLabelTextSize" format="dimension" />
+    <attr name="sample_curveChartCount" format="integer" />
+    <attr name="sample_curveStrokeWidth" format="dimension" />
+  </declare-styleable>
+
+  <attr name="sampleSlidingLayout" format="reference" />
+
+  <declare-styleable name="SampleSlidingLayout">
+    <attr name="sliding_handle" format="reference" />
+    <attr name="sliding_weight" format="float" />
+    <attr name="android:orientation" />
+  </declare-styleable>
+</resources>
