@@ -49,7 +49,7 @@ object AndroidSample {
       e.printStackTrace()
       throw IllegalArgumentException(
         "Unable to find ${SampleConstants.SAMPLE_CONFIGURATION_CLASS} class," +
-          " did you apply the `com.airsaid.sample` plugin?"
+          " did you apply the 'com.airsaid.sample' plugin?"
       )
     }
   }
