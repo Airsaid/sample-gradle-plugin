@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.airsaid.sample.api.Register
 import com.airsaid.sample.extension.component.code.SampleSourceCode
 
-@SampleSourceCode(value = "SampleSourceCodeFragment.kt")
+@SampleSourceCode(regex = "SampleSourceCodeFragment.kt")
 @Register(
   title = "SampleSourceCode",
   desc = "Use @SampleSourceCode to associate source code to sample."

@@ -14,5 +14,5 @@ public @interface SampleSourceCode {
   /**
    * If you want to filter the source files by regex.
    */
-  String value() default "";
+  String regex() default "";
 }

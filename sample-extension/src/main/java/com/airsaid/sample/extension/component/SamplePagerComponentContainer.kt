@@ -23,7 +23,7 @@ open class SamplePagerComponentContainer : ComponentContainer {
   override fun isComponentAvailable(component: Any): Boolean {
     val sampleSourceCode = component.javaClass.getAnnotation(SampleSourceCode::class.java)
     val sampleDocument = component.javaClass.getAnnotation(SampleDocument::class.java)
-    return sampleSourceCode?.value != null || sampleDocument?.value != null
+    return sampleSourceCode?.regex != null || sampleDocument?.value != null
   }
 
   override fun getComponentView(
@@ -43,7 +43,7 @@ open class SamplePagerComponentContainer : ComponentContainer {
 
     val sampleSourceCode = component.javaClass.getAnnotation(SampleSourceCode::class.java)
     if (null != sampleSourceCode) {
-      val filter = sampleSourceCode.value
+      val filter = sampleSourceCode.regex
       // Plus our component
       titleList.add(context.getString(R.string.sample_source_code))
       val packageName = component.javaClass.getPackage()!!.name
