@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
-  private List<Fragment> fragments = new ArrayList<>();
+  private final List<Fragment> fragments = new ArrayList<>();
   private List<CharSequence> titleList;
 
   public static FragmentPagerAdapter create(@NonNull FragmentManager fm, @NonNull Fragment[] fragmentList) {
@@ -56,6 +56,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     try {
       super.finishUpdate(container);
     } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 

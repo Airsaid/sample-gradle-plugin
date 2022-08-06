@@ -35,5 +35,6 @@ dependencies {
   implementation(libs.android.material)
   implementation(libs.androidx.startup.runtime)
   implementation(libs.recyclerview.library)
+  implementation(libs.colorpicker)
   api(projects.sampleCore)
 }

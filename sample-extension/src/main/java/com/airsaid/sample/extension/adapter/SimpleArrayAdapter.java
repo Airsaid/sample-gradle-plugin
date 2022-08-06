@@ -10,7 +10,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airsaid.sample.extension.utils.Cheeses;
+import com.airsaid.sample.extension.data.SampleData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,22 +26,22 @@ import java.util.List;
  * @see #createFromResource(Context, int)
  */
 public class SimpleArrayAdapter<E> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-  public static SimpleArrayAdapter createFromResource(Context context, @ArrayRes int res) {
-    return new SimpleArrayAdapter(context, context.getResources().getStringArray(res));
+  public static SimpleArrayAdapter<String> createFromResource(Context context, @ArrayRes int res) {
+    return new SimpleArrayAdapter<>(context, context.getResources().getStringArray(res));
   }
 
-  public static SimpleArrayAdapter createFromDataProvider(Context context) {
-    return new SimpleArrayAdapter(context, Cheeses.sCheeseStrings);
+  public static SimpleArrayAdapter<String> createFromDataProvider(Context context) {
+    return new SimpleArrayAdapter<>(context, SampleData.getStringArray());
   }
 
-  public static SimpleArrayAdapter createFromDataProvider(Context context, int length) {
-    return new SimpleArrayAdapter(context, Arrays.copyOfRange(Cheeses.sCheeseStrings, 0, length));
+  public static SimpleArrayAdapter<String> createFromDataProvider(Context context, int length) {
+    return new SimpleArrayAdapter<>(context, Arrays.copyOfRange(SampleData.getStringArray(), 0, length));
   }
 
   private final LayoutInflater layoutInflater;
   @LayoutRes
-  private int layoutResources;
-  private List<E> items = new ArrayList<>();
+  private final int layoutResources;
+  private final List<E> items = new ArrayList<>();
 
   public SimpleArrayAdapter(Context context, E[] items) {
     this(context, android.R.layout.simple_list_item_1, Arrays.asList(items));
