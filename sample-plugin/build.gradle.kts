@@ -11,6 +11,8 @@ gradlePlugin {
     register("samplePlugin") {
       id = "com.airsaid.sample"
       implementationClass = "com.airsaid.sample.plugin.SamplePlugin"
+      displayName = "Android Sample Plugin"
+      description = "A powerful gradle plugin to help you demonstrate your android app."
     }
   }
 }
