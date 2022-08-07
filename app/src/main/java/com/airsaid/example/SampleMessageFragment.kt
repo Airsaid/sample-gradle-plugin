@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.airsaid.example.R
 import com.airsaid.sample.api.Register
 import com.airsaid.sample.extension.component.message.SampleMessage
 

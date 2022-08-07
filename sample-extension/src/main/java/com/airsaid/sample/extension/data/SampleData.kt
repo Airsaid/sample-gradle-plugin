@@ -2,8 +2,8 @@ package com.airsaid.sample.extension.data
 
 import android.graphics.Color
 import androidx.fragment.app.FragmentActivity
-import me.jfenn.colorpickerdialog.dialogs.ColorPickerDialog
 import kotlin.random.Random
+import me.jfenn.colorpickerdialog.dialogs.ColorPickerDialog
 
 /**
  * @author airsaid

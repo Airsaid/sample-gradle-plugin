@@ -4,9 +4,6 @@ pluginManagement {
     google()
     mavenCentral()
     mavenLocal()
-    maven("https://jitpack.io")
-    maven("https://plugins.gradle.org/m2/")
-    maven("https://dl.bintray.com/jetbrains/kotlin-native-dependencies")
   }
 }
 dependencyResolutionManagement {
@@ -15,9 +12,6 @@ dependencyResolutionManagement {
     google()
     mavenCentral()
     mavenLocal()
-    maven("https://jitpack.io")
-    maven("https://plugins.gradle.org/m2/")
-    maven("https://dl.bintray.com/jetbrains/kotlin-native-dependencies")
   }
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
