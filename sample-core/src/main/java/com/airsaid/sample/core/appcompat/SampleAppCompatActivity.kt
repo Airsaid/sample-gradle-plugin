@@ -3,6 +3,7 @@ package com.airsaid.sample.core.appcompat
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -47,6 +48,11 @@ open class SampleAppCompatActivity : AbstractSampleActivity() {
    * So we keep this view. If `findViewById` can't find the view. we try to find view from it.
    */
   private var originalContentView: View? = null
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    delegate.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    super.onCreate(savedInstanceState)
+  }
 
   override fun setContentView(layoutResID: Int) {
     if (isLauncherActivity) {
