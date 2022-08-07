@@ -33,17 +33,6 @@ class DefaultMainSampleFragment : Fragment() {
 
   private lateinit var binding: SampleFragmentMainLayoutBinding
 
-  /**
-   * If you want to have you own tool bar.
-   *
-   * @param context
-   */
-  override fun onAttach(context: Context) {
-    super.onAttach(context)
-    val activity = activity as? AppCompatActivity
-    activity?.delegate?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-  }
-
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
