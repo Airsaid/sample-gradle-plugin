@@ -1,4 +1,6 @@
 # sample-gradle-plugin
+
+[![version](https://img.shields.io/maven-central/v/com.airsaid/sample-plugin)](https://search.maven.org/artifact/com.airsaid/sample-plugin)
 [![license](https://img.shields.io/github/license/airsaid/statelayout)](LICENSE)
 
 :rocket: A powerful gradle plugin to help you demonstrate your android app.
