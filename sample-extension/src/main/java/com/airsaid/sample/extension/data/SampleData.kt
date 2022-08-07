@@ -30,6 +30,30 @@ object SampleData {
     return Cheeses.sCheeseStrings
   }
 
+  @JvmStatic
+  @JvmOverloads
+  fun getRandomImageUrl(
+    width: Int = 200,
+    height: Int = 300
+  ): String {
+    return "https://picsum.photos/$width/$height"
+  }
+
+  @JvmStatic
+  @JvmOverloads
+  fun getRandomImageUrls(
+    width: Int = 200,
+    height: Int = 300,
+    size: Int = 100
+  ): List<String> {
+    return mutableListOf<String>().apply {
+      repeat(size) {
+        add(getRandomImageUrl(width, height))
+      }
+    }
+  }
+
+  @JvmStatic
   fun showColorPickerDialog(
     activity: FragmentActivity,
     defColor: Int = Color.BLACK,
