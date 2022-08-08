@@ -7,6 +7,7 @@ import com.airsaid.sample.plugin.instrumentation.AndroidSampleTemplateCreator
 import com.airsaid.sample.plugin.instrumentation.SampleAsmClassVisitorFactory
 import com.airsaid.sample.plugin.instrumentation.SampleClassHandler
 import com.airsaid.sample.plugin.task.MergeSourceFileAndDocTask
+import com.airsaid.sample.plugin.util.capitalized
 import com.airsaid.sample.plugin.util.isAndroidProject
 import com.android.build.api.instrumentation.FramesComputationMode
 import com.android.build.api.instrumentation.InstrumentationScope
@@ -14,8 +15,11 @@ import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.tasks.TransformClassesWithAsmTask
 import com.google.gson.Gson
-import org.gradle.api.*
-import org.gradle.configurationcache.extensions.capitalized
+import org.gradle.api.Action
+import org.gradle.api.GradleException
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.api.Task
 import java.io.File
 
 /**

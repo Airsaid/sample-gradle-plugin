@@ -130,6 +130,17 @@ class SamplePluginTest : GradlePluginTest() {
   }
 
   @Test
+  @TestVersion(androidVersion = "7.0.0", gradleVersion = "7.0.2")
+  fun `test assemble build by lower version`() {
+    testProjectSetup {
+      build(":app:assembleDebug") {
+        Assertions.assertEquals(TaskOutcome.SUCCESS, task(":app:assembleDebug")?.outcome)
+      }
+    }
+  }
+
+
+  @Test
   @TestVersion(androidVersion = "7.2.1", gradleVersion = "7.4.1")
   fun `test debug enable extension`() {
     testProjectSetup(isEnableDebug = true) {
