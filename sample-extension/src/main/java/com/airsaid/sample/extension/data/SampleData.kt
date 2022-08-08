@@ -54,6 +54,7 @@ object SampleData {
   }
 
   @JvmStatic
+  @JvmOverloads
   fun showColorPickerDialog(
     activity: FragmentActivity,
     defColor: Int = Color.BLACK,
