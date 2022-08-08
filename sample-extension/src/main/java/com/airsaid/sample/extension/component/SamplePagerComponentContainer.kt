@@ -5,17 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.airsaid.sample.api.Extension
 import com.airsaid.sample.core.appcompat.SampleWrapperViewFragment
 import com.airsaid.sample.core.component.ComponentContainer
 import com.airsaid.sample.extension.R
-import com.airsaid.sample.extension.adapter.SimpleFragmentPagerAdapter
 import com.airsaid.sample.extension.component.code.SampleSourceCode
 import com.airsaid.sample.extension.component.code.SampleSourceFileFragmentListFragment
 import com.airsaid.sample.extension.component.document.SampleDocument
 import com.airsaid.sample.extension.component.document.SampleDocumentFragment
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 @Extension
 open class SamplePagerComponentContainer : ComponentContainer {
@@ -35,7 +36,7 @@ open class SamplePagerComponentContainer : ComponentContainer {
     val layoutInflater = LayoutInflater.from(context)
     val contentLayout = layoutInflater.inflate(R.layout.sample_fragment_tab, parentView, false)
     val sampleTabLayout = contentLayout.findViewById<TabLayout>(R.id.sampleTabLayout)
-    val sampleViewPager = contentLayout.findViewById<ViewPager>(R.id.sampleViewPager)
+    val sampleViewPager = contentLayout.findViewById<ViewPager2>(R.id.sampleViewPager)
     val titleList: MutableList<CharSequence> = ArrayList()
     titleList.add(context.getString(R.string.sample))
     val fragmentList: MutableList<Fragment> = java.util.ArrayList()
@@ -57,10 +58,19 @@ open class SamplePagerComponentContainer : ComponentContainer {
       titleList.add(context.getString(R.string.sample_document))
       fragmentList.add(SampleDocumentFragment.newInstance(packageName, url))
     }
-    sampleTabLayout.setupWithViewPager(sampleViewPager)
     sampleViewPager.offscreenPageLimit = 3
-    sampleViewPager.adapter =
-      SimpleFragmentPagerAdapter.create(context.supportFragmentManager, fragmentList, titleList)
+    sampleViewPager.adapter = object : FragmentStateAdapter(context) {
+      override fun getItemCount(): Int {
+        return fragmentList.size
+      }
+
+      override fun createFragment(position: Int): Fragment {
+        return fragmentList[position]
+      }
+    }
+    TabLayoutMediator(sampleTabLayout, sampleViewPager) { tab, position ->
+      tab.text = titleList[position]
+    }.attach()
     return contentLayout
   }
 

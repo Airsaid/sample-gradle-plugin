@@ -36,6 +36,7 @@ jdom2 = { module = "org.jdom:jdom2", version.ref = "jdom2" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 recyclerview-library = { module = "com.github.momodae.RecyclerViewLibrary2:adapter", version = "1.0.1" }
 colorpicker = { module = "me.jfenn.ColorPickerDialog:base", version = "0.2.2" }
+viewpager2 = { module = "androidx.viewpager2:viewpager2", version = "1.0.0" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

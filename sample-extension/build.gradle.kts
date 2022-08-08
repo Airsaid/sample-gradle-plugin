@@ -36,5 +36,6 @@ dependencies {
   implementation(libs.androidx.startup.runtime)
   implementation(libs.recyclerview.library)
   implementation(libs.colorpicker)
+  implementation(libs.viewpager2)
   api(projects.sampleCore)
 }

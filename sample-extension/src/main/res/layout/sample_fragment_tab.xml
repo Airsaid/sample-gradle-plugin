@@ -23,7 +23,7 @@
     app:layout_constraintTop_toBottomOf="@+id/sampleTabLayout"
     android:background="?android:attr/listDivider" />
 
-  <androidx.viewpager.widget.ViewPager
+  <androidx.viewpager2.widget.ViewPager2
     android:id="@+id/sampleViewPager"
     android:layout_width="match_parent"
     android:layout_height="0dp"
