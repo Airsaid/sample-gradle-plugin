@@ -1,5 +1,6 @@
 package com.airsaid.sample.extension.adapter.tree;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,8 @@ import java.util.Stack;
  * Warning:
  * Need to support add node to any position. Now we only allow you to add the node to start or end of the tree.
  */
-public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
+@SuppressLint("NotifyDataSetChanged")
+public abstract class TreeAdapter<E> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
   /**
    * All the expend node list.
    */
@@ -59,9 +61,7 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
     this.rootNode.isExpand = true;
     //First step. We add all the data from root node.
     List<TreeNode<E>> nodeList = getNodeList(rootNode);
-    if (null != nodeList) {
-      this.nodeList.addAll(nodeList);
-    }
+    this.nodeList.addAll(nodeList);
   }
 
   @Override
@@ -79,8 +79,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
 
   /**
    * Expand the specific tree node
-   *
-   * @param parentNode
    */
   public void expandNode(TreeNode<E> parentNode) {
     expandNode(parentNode, true);
@@ -114,8 +112,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
 
   /**
    * Collapse the specific tree node
-   *
-   * @param parentNode
    */
   public void collapseNode(TreeNode<E> parentNode) {
     collapseNode(parentNode, true);
@@ -139,9 +135,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
   /**
    * Return the item list from the giving root node.
    * We will collect all the expend node and data.
-   *
-   * @param rootNode
-   * @return
    */
   private List<TreeNode<E>> getNodeList(@NonNull TreeNode<E> rootNode) {
     List<TreeNode<E>> nodeList = new ArrayList<>();
@@ -181,12 +174,10 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
         //We try to load the data from somewhere.
         if (null != callback && !node.isExpand && !node.isLoad) {
           List<TreeNode<E>> children = callback.onLoad(node);
-          if (null != children) {
-            for (TreeNode child : children) {
-              child.parent = node;
-            }
-            node.children.addAll(children);
+          for (TreeNode<E> child : children) {
+            child.parent = node;
           }
+          node.children.addAll(children);
           node.isLoad = true;
         }
         boolean isExpand = node.isExpand;
@@ -215,10 +206,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
   /**
    * This function is for sub-class.
    * When the node expand or closed. It will called. Then you will be able to do something.
-   *
-   * @param node
-   * @param holder
-   * @param expand
    */
   protected void onNodeExpand(TreeNode<E> node, E item, RecyclerView.ViewHolder holder, boolean expand) {
   }
@@ -244,8 +231,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
 
   /**
    * Remove the specific position from node list.
-   *
-   * @param position
    */
   public void remove(int position) {
     TreeNode<E> node = nodeList.get(position);
@@ -256,30 +241,26 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
 
   /**
    * Remove the giving node from the tree.
-   *
-   * @param node
    */
   public void removeNode(@NonNull TreeNode<E> node) {
-    if (null != node) {
-      List<TreeNode<E>> childNodes = node.children;
-      if (node.isExpand && !childNodes.isEmpty()) {
-        int size = childNodes.size();
-        //We reverse to remove the node from the list. So I don't have to use The Iterator.
-        for (int i = size - 1; i >= 0; i--) {
-          TreeNode<E> treeNode = childNodes.get(i);
-          //Recurse to remove all the children.
-          removeNode(treeNode);
-        }
+    List<TreeNode<E>> childNodes = node.children;
+    if (node.isExpand && !childNodes.isEmpty()) {
+      int size = childNodes.size();
+      //We reverse to remove the node from the list. So I don't have to use The Iterator.
+      for (int i = size - 1; i >= 0; i--) {
+        TreeNode<E> treeNode = childNodes.get(i);
+        //Recurse to remove all the children.
+        removeNode(treeNode);
       }
-      //Remove this node from the list.
-      int position = nodeList.indexOf(node);
-      if (0 <= position) {
-        TreeNode<E> childNode = nodeList.remove(position);
-        notifyItemRemoved(position);
-        TreeNode<E> parent = childNode.parent;
-        if (null != parent) {
-          parent.children.remove(childNode);
-        }
+    }
+    //Remove this node from the list.
+    int position = nodeList.indexOf(node);
+    if (0 <= position) {
+      TreeNode<E> childNode = nodeList.remove(position);
+      notifyItemRemoved(position);
+      TreeNode<E> parent = childNode.parent;
+      if (null != parent) {
+        parent.children.remove(childNode);
       }
     }
   }
@@ -291,8 +272,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
 
   /**
    * Add the new node to the root node.
-   *
-   * @param node
    */
   public void add(TreeNode<E> node) {
     node.parent = rootNode;
@@ -315,8 +294,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
 
   /**
    * Add the new node to the root node.
-   *
-   * @param node
    */
   public void addFirst(TreeNode<E> node) {
     node.parent = rootNode;
@@ -348,8 +325,6 @@ public abstract class TreeAdapter<E> extends RecyclerView.Adapter {
    *         }
    *     }
    * </pre>
-   *
-   * @param callback
    */
   public void setLoadCallback(TreeLoadCallback<E> callback) {
     this.callback = callback;

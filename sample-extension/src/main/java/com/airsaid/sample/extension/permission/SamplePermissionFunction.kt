@@ -56,6 +56,6 @@ class SamplePermissionFunction : SampleFunction {
     // Here add permission observer
     val permissionsFragment = SamplePermissionsFragment.get(activity)
     // Request permission
-    permissionsFragment.requestPermissions(samplePermission.value)
+    permissionsFragment.requestPermissions(samplePermission!!.value)
   }
 }

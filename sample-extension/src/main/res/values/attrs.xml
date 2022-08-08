@@ -34,7 +34,7 @@
 
   <attr name="sampleCurveChartView" format="reference" />
 
-  <declare-styleable name="SampleCurveChartView">
+  <declare-styleable name="CurveChartView">
     <attr name="sample_curveColor" format="color" />
     <attr name="sample_curveFillColor" format="color" />
     <attr name="sample_curveLabelTextSize" format="dimension" />

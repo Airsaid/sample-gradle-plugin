@@ -186,6 +186,7 @@ object AndroidSample {
     return getExtension(ComponentManager::class.java)
   }
 
+  @Suppress("UNCHECKED_CAST")
   fun <E> getExtension(clazz: Class<E>): E {
     return extensionHandlers[clazz] as E
   }

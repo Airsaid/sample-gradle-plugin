@@ -1,7 +1,6 @@
 package com.airsaid.sample.plugin
 
 import com.airsaid.sample.api.SampleItem
-import java.util.ArrayList
 
 object PathNodePrinter {
   fun printPathTree(sampleList: List<SampleItem>) {
@@ -28,7 +27,7 @@ object PathNodePrinter {
     val map = mutableMapOf<String, PathNode>()
     sampleItemList.forEach { sampleItem ->
       var prevNode = rootNode
-      if (null == sampleItem.path) {
+      if (sampleItem.path.isEmpty()) {
         // Use the package as path.
         sampleItem.path = sampleItem.className.substringBeforeLast(".").replace('.', '/')
       }
@@ -115,8 +114,8 @@ object PathNodePrinter {
       return children.isEmpty()
     }
 
-    fun path(path: String): List<PathNode> {
-      val pathList = path.split("/")
+    fun path(pathStr: String): List<PathNode> {
+      val pathList = pathStr.split("/")
       var children = children
       pathList.forEach { path ->
         val child = children.find { it.item == path }

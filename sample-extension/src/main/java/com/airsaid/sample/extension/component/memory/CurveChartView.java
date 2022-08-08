@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import com.airsaid.sample.extension.R;
 
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  * @author JackChen
@@ -46,12 +47,12 @@ class CurveChartView extends View {
 
   public CurveChartView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SampleCurveChartView, defStyleAttr, R.style.Sample_CurveChartViewCompat);
-    setColor(a.getColor(R.styleable.SampleCurveChartView_sample_curveColor, 0));
-    setFillColor(a.getColor(R.styleable.SampleCurveChartView_sample_curveFillColor, 0));
-    setLabelTextSize(a.getDimensionPixelSize(R.styleable.SampleCurveChartView_sample_curveLabelTextSize, 0));
-    setStrokeWidth(a.getDimension(R.styleable.SampleCurveChartView_sample_curveStrokeWidth, 0f));
-    setPartCount(a.getInteger(R.styleable.SampleCurveChartView_sample_curveChartCount, 0));
+    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CurveChartView, defStyleAttr, R.style.Sample_CurveChartViewCompat);
+    setColor(a.getColor(R.styleable.CurveChartView_sample_curveColor, 0));
+    setFillColor(a.getColor(R.styleable.CurveChartView_sample_curveFillColor, 0));
+    setLabelTextSize(a.getDimensionPixelSize(R.styleable.CurveChartView_sample_curveLabelTextSize, 0));
+    setStrokeWidth(a.getDimension(R.styleable.CurveChartView_sample_curveStrokeWidth, 0f));
+    setPartCount(a.getInteger(R.styleable.CurveChartView_sample_curveChartCount, 0));
     a.recycle();
   }
 
@@ -135,7 +136,7 @@ class CurveChartView extends View {
     for (int i = 0; i < partCount; i++) {
       float scaleY = height - paddingBottom * 1f - yIntervalLen * i;
       canvas.drawLine(paddingLeft, scaleY, (width - paddingRight), scaleY, graduatedLinePaint);
-      String label = String.format("%.1fM", (this.yAxisMaxValue - this.yAxisMinValue) * i * 1f / (partCount - 1) + this.yAxisMinValue);
+      String label = String.format(Locale.getDefault(), "%.1fM", (this.yAxisMaxValue - this.yAxisMinValue) * i * 1f / (partCount - 1) + this.yAxisMinValue);
       canvas.drawText(label, paddingLeft, scaleY, textPaint);
     }
   }
