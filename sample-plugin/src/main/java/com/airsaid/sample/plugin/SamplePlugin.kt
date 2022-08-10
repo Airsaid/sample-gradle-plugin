@@ -8,9 +8,11 @@ import com.airsaid.sample.plugin.task.MergeSourceFileAndDocTask
 import com.airsaid.sample.plugin.transform.SampleAsmClassVisitorFactory
 import com.airsaid.sample.plugin.transform.processor.SampleProcessor
 import com.airsaid.sample.plugin.util.AndroidSampleTemplateCreator
-import com.airsaid.sample.plugin.util.PathNodePrinter
 import com.airsaid.sample.plugin.util.capitalized
 import com.airsaid.sample.plugin.util.isAndroidProject
+import com.airsaid.sample.plugin.util.lifecycle
+import com.airsaid.sample.plugin.util.logCategory
+import com.airsaid.sample.plugin.util.logEnable
 import com.android.build.api.instrumentation.FramesComputationMode
 import com.android.build.api.instrumentation.InstrumentationScope
 import com.android.build.api.variant.AndroidComponentsExtension
@@ -38,28 +40,47 @@ class SamplePlugin : Plugin<Project> {
     if (!project.isAndroidProject()) {
       throw GradleException("${project.name} is not an Android project.")
     }
-    val sampleExtension = project.extensions.create(EXTENSION_NAME, SampleExtension::class.java)
-    configureTransformClass(project)
-    createSampleConfigurationClassAfterTransform(project, sampleExtension)
-    configureCollectSourceFileAndDocTask(project)
+
+    project.initExtensions()
+    project.configureTransformClass()
+    project.createSampleConfigurationClassAfterTransform()
+    project.configureCollectSourceFileAndDocTask()
   }
 
-  private fun configureTransformClass(project: Project) {
-    val androidComponentsExtension =
-      project.extensions.getByType(AndroidComponentsExtension::class.java)
+  private fun Project.initExtensions() {
+    val sampleExtension = extensions.create(EXTENSION_NAME, SampleExtension::class.java)
+    logEnable = sampleExtension.enableDebug
+  }
+
+  private fun Project.configureTransformClass() {
+    val androidComponentsExtension = extensions.getByType(AndroidComponentsExtension::class.java)
     androidComponentsExtension.onVariants { variant ->
       variant.transformClassesWith(
         SampleAsmClassVisitorFactory::class.java,
         InstrumentationScope.PROJECT
       ) {}
-      variant.setAsmFramesComputationMode(
-        FramesComputationMode.COMPUTE_FRAMES_FOR_INSTRUMENTED_METHODS
-      )
+      variant.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
     }
   }
 
-  private fun configureCollectSourceFileAndDocTask(project: Project) {
-    project.afterEvaluate {
+  private fun Project.createSampleConfigurationClassAfterTransform() {
+    tasks.withType(TransformClassesWithAsmTask::class.java) { transformTask ->
+      transformTask.doLast(object : Action<Task> {
+        override fun execute(t: Task) {
+          val files = transformTask.outputs.files.files
+          val sampleItems = SampleProcessor.getSampleItems()
+          val extensionItems = SampleProcessor.getExtensionItems()
+          if (files.isNotEmpty()) {
+            val destFolder = files.first()
+            createSampleConfigurationClass(destFolder, sampleItems, extensionItems)
+          }
+        }
+      })
+    }
+  }
+
+  private fun Project.configureCollectSourceFileAndDocTask() {
+    afterEvaluate {
       val appExtension = project.extensions.getByType(AppExtension::class.java)
       appExtension.applicationVariants.forEach { applicationVariant ->
         val task = project.tasks.create(
@@ -76,35 +97,14 @@ class SamplePlugin : Plugin<Project> {
     }
   }
 
-  private fun createSampleConfigurationClassAfterTransform(
-    project: Project,
-    sampleExtension: SampleExtension
-  ) {
-    project.tasks.withType(TransformClassesWithAsmTask::class.java) { transformTask ->
-      transformTask.doLast(object : Action<Task> {
-        override fun execute(t: Task) {
-          val files = transformTask.outputs.files.files
-          val sampleItems = SampleProcessor.getSampleItems()
-          val extensionItems = SampleProcessor.getExtensionItems()
-          if (files.isNotEmpty()) {
-            val destFolder = files.first()
-            createSampleConfigurationClass(destFolder, sampleItems, extensionItems)
-          }
-          if (sampleExtension.enableDebug.get()) {
-            PathNodePrinter.printPathTree(sampleItems)
-          }
-        }
-      })
-    }
-  }
-
-  private fun createSampleConfigurationClass(
+  private fun Project.createSampleConfigurationClass(
     destFolder: File,
     sampleItems: List<SampleItem>,
     extensionItems: List<ExtensionItem>
   ) {
     val sampleData = SampleData(sampleItems, extensionItems)
     val sampleConfigJson = Json.encodeToString(sampleData)
+    lifecycle(project.logCategory(), "sampleConfigJson: $sampleConfigJson")
     AndroidSampleTemplateCreator.create(destFolder, sampleConfigJson)
   }
 }

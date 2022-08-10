@@ -139,7 +139,6 @@ class SamplePluginTest : GradlePluginTest() {
     }
   }
 
-
   @Test
   @TestVersion(androidVersion = "7.2.1", gradleVersion = "7.4.1")
   fun `test debug enable extension`() {
@@ -149,8 +148,7 @@ class SamplePluginTest : GradlePluginTest() {
           TaskOutcome.SUCCESS,
           task(":app:transformDebugClassesWithAsm")?.outcome
         )
-        Assertions.assertTrue(output.contains("+---The test dialog"))
-        Assertions.assertTrue(output.contains("+---The test fragment2"))
+        Assertions.assertTrue(output.contains("sampleConfigJson:"))
       }
     }
   }
