@@ -118,7 +118,7 @@ class DemoFragment : Fragment() {
 
 The following extension annotations are now supported.
 
-### `@SampleDocument`
+### @SampleDocument
 
 Display the related document. For example:
 ```kotlin
@@ -138,7 +138,7 @@ class SampleDocumentFragment : Fragment() {
 ```
 <img width="300" height="630" src="preview/document.png"/>
 
-### `@SampleSourceCode`
+### @SampleSourceCode
 
 Display the source file. For example:
 ```kotlin
@@ -156,7 +156,7 @@ class SampleSourceCodeFragment : Fragment() {
 ```
 <img width="300" height="630" src="preview/source_code.png"/>
 
-### `@SampleMessage`
+### @SampleMessage
 
 Display the test message. For example:
 ```kotlin
@@ -172,7 +172,7 @@ class SampleMessageFragment : Fragment() {
 ```
 <img width="300" height="630" src="preview/message.png"/>
 
-### `@SampleMemory`
+### @SampleMemory
 
 Display the runtime memory. For example:
 ```kotlin
@@ -187,7 +187,7 @@ class SampleMemoryFragment : Fragment() {
 ```
 <img width="300" height="630" src="preview/memory.png"/>
 
-### `@SamplePermission`
+### @SamplePermission
 
 Automatically request specified permissions. For example:
 ```kotlin
