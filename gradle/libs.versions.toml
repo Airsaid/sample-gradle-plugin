@@ -9,7 +9,7 @@ asm = "7.0"
 jdom2 = "2.0.5"
 gradle-test-toolkit = "1.0.3"
 gson = "2.8.9"
-sample-plugin = "1.0.0-SNAPSHOT"
+sample-plugin = "1.0.0"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
