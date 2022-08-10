@@ -13,7 +13,7 @@ SamplePlugin can automatically generate this template code through annotations a
 
 Due to limited energy, the plugin currently supports only the current newer versions.
 
-- Minimal supported [Gradle](https://www.gradle.org) version: `7.4.2`.
+- Minimal supported [Gradle](https://www.gradle.org) version: `7.0.2`.
 - Minimal supported [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin) version: `7.0.0`.
 
 # Setup
