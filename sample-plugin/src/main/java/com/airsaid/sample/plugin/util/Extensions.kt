@@ -1,13 +1,13 @@
 package com.airsaid.sample.plugin.util
 
+import com.airsaid.sample.plugin.constant.Constants.ANDROIDX_COMPAT_ACTIVITY_CLASS_NAME
+import com.airsaid.sample.plugin.constant.Constants.ANDROIDX_FRAGMENT_ACTIVITY_CLASS_NAME
 import com.android.build.gradle.AppPlugin
 import org.gradle.api.Project
 import java.util.Locale
 
 /**
  * Returns the Android application plugin if it is applied to the project.
- *
- * @return true if the Android application plugin is applied to the project.
  */
 fun Project.isAndroidProject() = project.plugins.hasPlugin(AppPlugin::class.java)
 
@@ -21,3 +21,16 @@ fun Project.isAndroidProject() = project.plugins.hasPlugin(AppPlugin::class.java
 fun String.capitalized(): String {
   return replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 }
+
+/**
+ * Returns whether the current class name needs to be processed.
+ */
+fun String.isNeedProcessedClassName(): Boolean {
+  return this.toFullyQualifiedName() == ANDROIDX_COMPAT_ACTIVITY_CLASS_NAME.toFullyQualifiedName() ||
+    this.toFullyQualifiedName() == ANDROIDX_FRAGMENT_ACTIVITY_CLASS_NAME.toFullyQualifiedName()
+}
+
+/**
+ * Returns fully qualified name of current name.
+ */
+fun String.toFullyQualifiedName() = this.replace("/", ".")

@@ -1,4 +1,4 @@
-package com.airsaid.sample.plugin
+package com.airsaid.sample.plugin.util
 
 import com.airsaid.sample.api.SampleItem
 

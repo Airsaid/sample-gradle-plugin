@@ -9,13 +9,14 @@ asm = "7.0"
 jdom2 = "2.0.5"
 gradle-test-toolkit = "1.0.3"
 gson = "2.8.9"
-sample-plugin = "1.0.0"
+sample-plugin = "1.0.0-SNAPSHOT"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.3.3" }
 kotlin-script-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "kotlin" }
 android-material = { module = "com.google.android.material:material", version = "1.3.0" }
 androidx-ktx = { module = "androidx.core:core-ktx", version = "1.3.2" }
@@ -41,6 +42,7 @@ viewpager2 = { module = "androidx.viewpager2:viewpager2", version = "1.0.0" }
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android-plugin" }
 android-library = { id = "com.android.library", version.ref = "android-plugin" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.21.0" }

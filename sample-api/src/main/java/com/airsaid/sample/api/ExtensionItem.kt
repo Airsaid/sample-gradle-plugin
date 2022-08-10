@@ -1,14 +1,18 @@
 package com.airsaid.sample.api
 
-import java.util.*
+import androidx.annotation.Keep
+import kotlinx.serialization.Serializable
+import java.util.Objects
 
 /**
  * @author airsaid
  */
+@Keep
+@Serializable
 data class ExtensionItem(
-  var className: String = "",
-  var superClass: String = "",
-  var interfaces: Array<String> = emptyArray(),
+  val className: String,
+  val superClassName: String,
+  val interfaces: List<String>,
 ) {
 
   val isAvailable: Boolean

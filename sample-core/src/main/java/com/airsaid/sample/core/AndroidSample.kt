@@ -3,7 +3,7 @@ package com.airsaid.sample.core
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.airsaid.sample.api.ExtensionItem
+import com.airsaid.sample.api.SampleData
 import com.airsaid.sample.api.SampleItem
 import com.airsaid.sample.core.component.ComponentManager
 import com.airsaid.sample.core.extension.ExtensionHandler
@@ -11,8 +11,8 @@ import com.airsaid.sample.core.function.FunctionManager
 import com.airsaid.sample.core.main.SampleActivityLifeCycleCallback
 import com.airsaid.sample.core.model.PathNode
 import com.airsaid.sample.core.processor.ActionProcessManager
-import org.json.JSONArray
-import org.json.JSONObject
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 /**
  * @author JackChen
@@ -40,10 +40,20 @@ object AndroidSample {
     try {
       val configurationClass = Class.forName(SampleConstants.SAMPLE_CONFIGURATION_CLASS)
       val configurationField = configurationClass.getField(SampleConstants.SAMPLE_CONFIGURATION_FIELD_NAME)
-      configurationField.get(null)?.let { configurationText ->
-        val jsonObject = JSONObject(configurationText.toString())
-        initialSampleItems(jsonObject)
-        initialExtensions(jsonObject)
+      configurationField.get(null)?.let { configurationJson ->
+        val sampleData = Json.decodeFromString<SampleData>(configurationJson as String)
+
+        sampleItemList.addAll(sampleData.sampleItems)
+        mergeSampleItems(sampleItemList)
+
+        sampleData.extensionItems.forEach { extensionItem ->
+          extensionHandlers.values.forEach { extensionHandler ->
+            extensionHandler.handle(
+              extensionItem.className, extensionItem.superClassName,
+              extensionItem.interfaces.toList()
+            )
+          }
+        }
       }
     } catch (e: ClassNotFoundException) {
       e.printStackTrace()
@@ -52,13 +62,6 @@ object AndroidSample {
           " did you apply the 'com.airsaid.sample' plugin?"
       )
     }
-  }
-
-  private fun initialSampleItems(jsonObject: JSONObject) {
-    val sampleArray = jsonObject.getJSONArray("samples")
-    val sampleList = deserializationSampleList(sampleArray)
-    sampleItemList.addAll(sampleList)
-    mergeSampleItems(sampleList)
   }
 
   private fun mergeSampleItems(sampleItemList: List<SampleItem>) {
@@ -118,64 +121,6 @@ object AndroidSample {
         parentNode.add(childNode)
       }
     }
-  }
-
-  private fun deserializationSampleList(sampleArray: JSONArray): List<SampleItem> {
-    val sampleItemList = mutableListOf<SampleItem>()
-    for (i in 0 until sampleArray.length()) {
-      val sampleItem = SampleItem()
-      val sampleObject = sampleArray.getJSONObject(i)
-      sampleItem.className = sampleObject.getString("className")
-      val title = sampleObject.optString(SampleConstants.PARAMETER_TITLE)
-      if (title.isNotEmpty()) {
-        sampleItem.title = title
-      } else {
-        val simpleClassName = sampleItem.className.substringAfterLast(".")
-        sampleItem.title = simpleClassName
-      }
-      sampleItem.desc = sampleObject.optString(SampleConstants.PARAMETER_DESC)
-      sampleItem.path = sampleObject.optString(SampleConstants.PARAMETER_PATH)
-      if (sampleItem.path.isEmpty()) {
-        // Use the package as path.
-        sampleItem.path = sampleItem.className.substringBeforeLast(".").replace('.', '/')
-      }
-      sampleItem.isTestCase = sampleObject.getBoolean("isTestCase")
-      if (sampleItem.isAvailable) {
-        sampleItemList.add(sampleItem)
-      }
-    }
-    return sampleItemList
-  }
-
-  private fun initialExtensions(jsonObject: JSONObject) {
-    val extensionArray = jsonObject.getJSONArray("extensions")
-    val extensionList = deserializationExtensionList(extensionArray)
-    extensionList.forEach { extensionItem ->
-      extensionHandlers.values.forEach { extensionHandler ->
-        extensionHandler.handle(
-          extensionItem.className, extensionItem.superClass,
-          extensionItem.interfaces.toList()
-        )
-      }
-    }
-  }
-
-  private fun deserializationExtensionList(extensionsArray: JSONArray): List<ExtensionItem> {
-    val extensionItemList = mutableListOf<ExtensionItem>()
-    for (i in 0 until extensionsArray.length()) {
-      val extensionObject = extensionsArray.getJSONObject(i)
-      val extensionItem = ExtensionItem()
-      extensionItem.className = extensionObject.optString("className")
-      extensionItem.superClass = extensionObject.optString("superClass")
-      val interfaceArray = extensionObject.getJSONArray("interfaces")
-      extensionItem.interfaces = Array<String>(interfaceArray.length()) { index ->
-        interfaceArray.getString(index)
-      }
-      if (extensionItem.isAvailable) {
-        extensionItemList.add(extensionItem)
-      }
-    }
-    return extensionItemList
   }
 
   fun getFunctionManager(): FunctionManager {

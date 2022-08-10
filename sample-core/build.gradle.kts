@@ -2,6 +2,7 @@ plugins {
   id("com.android.library")
   id("org.jetbrains.kotlin.android")
   id("com.vanniktech.maven.publish")
+  id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -38,6 +39,6 @@ dependencies {
   implementation(libs.androidx.constraintlayout)
   implementation(libs.androidx.recyclerview)
   implementation(libs.androidx.startup.runtime)
-  implementation(libs.gson)
+  implementation(libs.kotlin.serialization)
   api(projects.sampleApi)
 }

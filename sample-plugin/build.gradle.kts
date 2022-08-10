@@ -4,6 +4,7 @@ plugins {
   id("org.gradle.java-gradle-plugin")
   id("org.jetbrains.kotlin.jvm")
   id("com.vanniktech.maven.publish")
+  id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 gradlePlugin {
@@ -68,11 +69,10 @@ dependencies {
   compileOnly(libs.android.gradle.plugin)
   compileOnly(libs.java.asm)
   compileOnly(libs.java.asm.util)
-  compileOnly(libs.jdom2)
-  compileOnly(libs.gson)
   compileOnly(libs.commons.io)
   compileOnly(libs.kotlin.stdlib)
 
+  implementation(libs.kotlin.serialization)
   internalLibs(projects.sampleApi)
 
   testImplementation(gradleTestKit())
@@ -80,4 +80,5 @@ dependencies {
   testImplementation(libs.kotlin.reflect)
   testImplementation(libs.commons.io)
   testImplementation(libs.gradle.test.toolkit)
+  testImplementation(libs.kotlin.serialization)
 }

@@ -1,15 +1,19 @@
 package com.airsaid.sample.api
 
-import java.util.*
+import androidx.annotation.Keep
+import kotlinx.serialization.Serializable
+import java.util.Objects
 
 /**
  * @author airsaid
  */
+@Keep
+@Serializable
 data class SampleItem(
+  val className: String,
   var title: String = "",
   var desc: String = "",
   var path: String = "",
-  var className: String = "",
   var isTestCase: Boolean = false,
 ) : Comparable<SampleItem> {
 
