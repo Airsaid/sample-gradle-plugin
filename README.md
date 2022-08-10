@@ -145,7 +145,7 @@ Display the source file. For example:
 // By default, all source classes of the package where the current class is located are displayed.
 @SampleSourceCode
 // Or you can use regular expressions that filter only the required classes:
-// @SampleSourceCode(regex = "SampleSourceCodeFragment.kt")
+// @SampleSourceCode("SampleSourceCodeFragment.kt")
 @Register(
   title = "SampleSourceCode",
   desc = "Use @SampleSourceCode to associate source code to sample."

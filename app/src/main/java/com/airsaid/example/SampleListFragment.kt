@@ -18,7 +18,7 @@ import com.airsaid.sample.extension.permission.SamplePermission
 
 @SampleMemory
 @SampleMessage
-@SampleSourceCode(regex = "SampleListFragment.kt")
+@SampleSourceCode("SampleListFragment.kt")
 @SampleDocument("assets://sample_document.md")
 @SamplePermission(Manifest.permission.READ_EXTERNAL_STORAGE)
 @Register(
