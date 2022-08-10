@@ -43,23 +43,25 @@ object AndroidSample {
       configurationField.get(null)?.let { configurationJson ->
         val sampleData = Json.decodeFromString<SampleData>(configurationJson as String)
 
-        sampleItemList.addAll(sampleData.sampleItems)
-        mergeSampleItems(sampleItemList)
+        val availableSampleItems = sampleData.sampleItems.filter { it.isAvailable }
+        sampleItemList.addAll(availableSampleItems)
+        mergeSampleItems(availableSampleItems)
 
-        sampleData.extensionItems.forEach { extensionItem ->
+        val availableExtensionItems = sampleData.extensionItems.filter { it.isAvailable }
+        availableExtensionItems.forEach { extensionItem ->
           extensionHandlers.values.forEach { extensionHandler ->
             extensionHandler.handle(
-              extensionItem.className, extensionItem.superClassName,
-              extensionItem.interfaces.toList()
+              extensionItem.className,
+              extensionItem.superClassName,
+              extensionItem.interfaces
             )
           }
         }
       }
     } catch (e: ClassNotFoundException) {
-      e.printStackTrace()
       throw IllegalArgumentException(
         "Unable to find ${SampleConstants.SAMPLE_CONFIGURATION_CLASS} class," +
-          " did you apply the 'com.airsaid.sample' plugin?"
+          " did you apply the 'com.airsaid.sample' plugin?", e
       )
     }
   }
