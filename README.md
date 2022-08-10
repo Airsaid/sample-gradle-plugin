@@ -218,11 +218,11 @@ class SamplePermissionFragment : Fragment() {
 
 # Project structure
 
-- app: The demo app.
-- sample-api: Common api for both library and plugin.
-- sample-core: The core library. It supports the basic action processor and extension.
-- sample-extension: Based on the core. It helps us implements all the extensions, such as components and functions.
-- sample-plugin: This Gradle Plugin helps us collect all the sample, testcases, extensions.
+- **app**: the demo app.
+- **sample-api**: common api for both library and plugin.
+- **sample-core**: the core library. It supports the basic action processor and extension.
+- **sample-extension**: based on the core. It helps us implements all the extensions, such as components and functions.
+- **sample-plugin**: this Gradle Plugin helps us collect all the sample, testcases, extensions.
 
 
 # License
