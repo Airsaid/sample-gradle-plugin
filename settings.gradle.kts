@@ -1,4 +1,7 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
+  includeBuild("build-logic")
   repositories {
     gradlePluginPortal()
     google()
@@ -6,6 +9,7 @@ pluginManagement {
     mavenLocal()
   }
 }
+
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
@@ -15,6 +19,6 @@ dependencyResolutionManagement {
     mavenLocal()
   }
 }
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "sample-gradle-plugin"
 include(":app", ":sample-api", ":sample-core", ":sample-extension", ":sample-plugin")

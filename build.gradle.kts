@@ -13,9 +13,10 @@ plugins {
 subprojects {
   apply(plugin = "org.jlleitschuh.gradle.ktlint")
   afterEvaluate {
+    val isAndroidProject = plugins.hasPlugin("com.android.application") || plugins.hasPlugin("com.android.library")
     ktlint {
       debug.set(true)
-      android.set(isAndroidProject())
+      android.set(isAndroidProject)
       additionalEditorconfigFile.set(file("$rootDir/.editorconfig"))
     }
   }

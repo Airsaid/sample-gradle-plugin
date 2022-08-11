@@ -1,20 +1,13 @@
 plugins {
-  id("com.android.application")
-  id("org.jetbrains.kotlin.android")
+  id("sample.android.application")
   id("com.airsaid.sample")
 }
 
 android {
-  compileSdk = Versions.App.COMPILE_SDK
-
   defaultConfig {
     applicationId = "com.airsaid.sample"
-    minSdk = Versions.App.MIN_SDK
-    targetSdk = Versions.App.TARGET_SDK
-    versionCode = Versions.App.VERSION_CODE
-    versionName = Versions.App.VERSION_NAME
-
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    versionCode = 1
+    versionName = "1.0.0"
   }
 
   buildTypes {
@@ -22,15 +15,6 @@ android {
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
-  }
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-  }
-
-  kotlinOptions {
-    jvmTarget = "1.8"
   }
 }
 
