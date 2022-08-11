@@ -7,7 +7,7 @@ import com.airsaid.sample.plugin.extension.SampleExtension
 import com.airsaid.sample.plugin.task.MergeSourceFileAndDocTask
 import com.airsaid.sample.plugin.transform.SampleAsmClassVisitorFactory
 import com.airsaid.sample.plugin.transform.processor.SampleProcessor
-import com.airsaid.sample.plugin.util.AndroidSampleTemplateCreator
+import com.airsaid.sample.plugin.util.SampleConfigClassCreator
 import com.airsaid.sample.plugin.util.capitalized
 import com.airsaid.sample.plugin.util.isAndroidProject
 import com.airsaid.sample.plugin.util.lifecycle
@@ -105,6 +105,6 @@ class SamplePlugin : Plugin<Project> {
     val sampleData = SampleData(sampleItems, extensionItems)
     val sampleConfigJson = Json.encodeToString(sampleData)
     lifecycle(project.logCategory(), "sampleConfigJson: $sampleConfigJson")
-    AndroidSampleTemplateCreator.create(destFolder, sampleConfigJson)
+    SampleConfigClassCreator.create(destFolder, sampleConfigJson)
   }
 }
