@@ -10,6 +10,7 @@ import com.airsaid.sample.core.extension.ExtensionHandler
 import com.airsaid.sample.core.function.FunctionManager
 import com.airsaid.sample.core.main.SampleActivityLifeCycleCallback
 import com.airsaid.sample.core.model.PathNode
+import com.airsaid.sample.core.path.PathProvider
 import com.airsaid.sample.core.processor.ActionProcessManager
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -57,6 +58,8 @@ object AndroidSample {
             )
           }
         }
+
+        PathProvider.init(sampleData.pathItems)
       }
     } catch (e: ClassNotFoundException) {
       throw IllegalArgumentException(
@@ -88,6 +91,7 @@ object AndroidSample {
       }
       prevNode.add(PathNode(sampleItem))
     }
+    fillFullPath(rootNode)
     // Collect the single node in the path.
     val singleNodeList = mutableListOf<PathNode>()
     collectSingleNode(singleNodeList, root, root.isSingle())
@@ -95,6 +99,13 @@ object AndroidSample {
     singleNodeList.forEach(PathNode::shiftUp)
     rootNode.children.forEach { childNode ->
       shrinkPathNode(rootNode, childNode)
+    }
+  }
+
+  private fun fillFullPath(root: PathNode) {
+    root.fullPath = root.fullPath()
+    root.children.forEach {
+      fillFullPath(it)
     }
   }
 

@@ -81,20 +81,26 @@ class SamplePluginTest : GradlePluginTest() {
                                 This is a test mark down file.
               """.trimIndent()
             }
+            file("TestActivity.kt") {
+              """
+                            |package ${packageName()}
+                            |@com.airsaid.sample.api.Register(title = "TestActivity")
+                            |@com.airsaid.sample.api.PathDescription(title = "Test Case", desc = "This is a test case.")
+                            |class TestActivity : androidx.appcompat.app.AppCompatActivity()
+                            """.trimMargin()
+            }
             file("TestFragment.kt") {
               """
                             |package ${packageName()}
-                            |import androidx.appcompat.app.AppCompatActivity
-                            |@com.airsaid.sample.api.Register(title="The test fragment2")
-                            |class TestFragment : AppCompatActivity()
+                            |@com.airsaid.sample.api.Register(title = "TestFragment", desc = "This is a test fragment.")
+                            |class TestFragment : androidx.fragment.app.Fragment()
                             """.trimMargin()
             }
             file("TestDialog.kt") {
               """
                             |package $testPackageName
-                            |import androidx.appcompat.app.AppCompatDialog
-                            |@com.airsaid.sample.api.Register(title="The test dialog")
-                            |class TestDialog
+                            |@com.airsaid.sample.api.Register(title = "TestDialogFragment")
+                            |class TestDialogFragment : androidx.fragment.app.DialogFragment()
                             """.trimMargin()
             }
           }
@@ -107,7 +113,6 @@ class SamplePluginTest : GradlePluginTest() {
   @Test
   @TestVersion(androidVersion = "7.2.1", gradleVersion = "7.4.1")
   fun `test sample plugin build`() {
-    // :app:assembleDebug
     testProjectSetup {
       build(":app:transformDebugClassesWithAsm") {
         Assertions.assertEquals(

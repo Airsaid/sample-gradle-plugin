@@ -1,8 +1,6 @@
 package com.airsaid.sample.plugin
 
-import com.airsaid.sample.api.ExtensionItem
 import com.airsaid.sample.api.SampleData
-import com.airsaid.sample.api.SampleItem
 import com.airsaid.sample.plugin.extension.SampleExtension
 import com.airsaid.sample.plugin.task.MergeSourceFileAndDocTask
 import com.airsaid.sample.plugin.transform.SampleAsmClassVisitorFactory
@@ -68,11 +66,9 @@ class SamplePlugin : Plugin<Project> {
       transformTask.doLast(object : Action<Task> {
         override fun execute(t: Task) {
           val files = transformTask.outputs.files.files
-          val sampleItems = SampleProcessor.getSampleItems()
-          val extensionItems = SampleProcessor.getExtensionItems()
           if (files.isNotEmpty()) {
             val destFolder = files.first()
-            createSampleConfigurationClass(destFolder, sampleItems, extensionItems)
+            createSampleConfigurationClass(destFolder)
           }
         }
       })
@@ -97,12 +93,11 @@ class SamplePlugin : Plugin<Project> {
     }
   }
 
-  private fun Project.createSampleConfigurationClass(
-    destFolder: File,
-    sampleItems: List<SampleItem>,
-    extensionItems: List<ExtensionItem>
-  ) {
-    val sampleData = SampleData(sampleItems, extensionItems)
+  private fun Project.createSampleConfigurationClass(destFolder: File) {
+    val sampleItems = SampleProcessor.getSampleItems()
+    val extensionItems = SampleProcessor.getExtensionItems()
+    val pathItems = SampleProcessor.getPathItems()
+    val sampleData = SampleData(sampleItems, extensionItems, pathItems)
     val sampleConfigJson = Json.encodeToString(sampleData)
     lifecycle(project.logCategory(), "sampleConfigJson: $sampleConfigJson")
     SampleConfigClassCreator.create(destFolder, sampleConfigJson)

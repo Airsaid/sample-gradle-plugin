@@ -10,5 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SampleData(
   val sampleItems: List<SampleItem>,
-  val extensionItems: List<ExtensionItem>
+  val extensionItems: List<ExtensionItem>,
+  val pathItems: List<PathItem>
 )

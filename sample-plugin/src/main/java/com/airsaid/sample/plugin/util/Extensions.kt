@@ -40,6 +40,11 @@ fun String.isNeedProcessedClassName(): Boolean {
  */
 fun String.toFullyQualifiedName() = this.replace("/", ".")
 
+/**
+ * Returns fully qualified path of current name.
+ */
+fun String.toFullyQualifiedPath() = this.replace(".", "/")
+
 lateinit var logEnable: Property<Boolean>
 
 fun debug(logCategory: String? = null, message: String, e: Throwable? = null) =

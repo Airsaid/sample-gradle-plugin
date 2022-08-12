@@ -24,6 +24,8 @@ import com.airsaid.sample.core.main.adapter.MutableListAdapter
 import com.airsaid.sample.core.main.adapter.SampleListAdapter
 import com.airsaid.sample.core.model.PathNode
 import com.airsaid.sample.core.util.appName
+import com.airsaid.sample.core.util.displayDesc
+import com.airsaid.sample.core.util.displayTitle
 
 /**
  * @author JackChen
@@ -88,7 +90,8 @@ class DefaultMainSampleFragment : Fragment() {
         if (null != activityClass) {
           val clazz = Class.forName(activityClass)
           Intent(requireActivity(), clazz).apply {
-            putExtra(SampleConstants.PARAMETER_TITLE, category.replaceFirstChar { it.uppercaseChar() })
+            putExtra(SampleConstants.PARAMETER_TITLE, pathNode.displayTitle())
+            putExtra(SampleConstants.PARAMETER_DESC, pathNode.displayDesc())
             putExtra(SampleConstants.PARAMETER_PATH, subDirectory)
             startActivity(this)
           }

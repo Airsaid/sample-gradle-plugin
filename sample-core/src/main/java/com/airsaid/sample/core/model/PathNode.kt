@@ -3,7 +3,7 @@ package com.airsaid.sample.core.model
 /**
  * @author JackChen
  */
-class PathNode(var item: Any? = null) {
+class PathNode(var item: Any? = null, var fullPath: String? = null) {
   var parent: PathNode? = null
   var children: ArrayList<PathNode> = ArrayList(1)
 
@@ -34,6 +34,16 @@ class PathNode(var item: Any? = null) {
       }
     }
     return children
+  }
+
+  fun fullPath(): String {
+    fullPath?.also { return it }
+    if (item == ".") return ""
+    val parentFullPath = parent?.fullPath() ?: ""
+    if (parentFullPath.isNotEmpty()) {
+      return "$parentFullPath/$item"
+    }
+    return item.toString()
   }
 
   fun shiftUp() {

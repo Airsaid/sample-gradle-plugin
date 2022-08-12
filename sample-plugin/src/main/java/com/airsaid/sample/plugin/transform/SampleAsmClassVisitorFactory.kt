@@ -1,6 +1,7 @@
 package com.airsaid.sample.plugin.transform
 
 import com.airsaid.sample.api.Extension
+import com.airsaid.sample.api.PathDescription
 import com.airsaid.sample.api.Register
 import com.airsaid.sample.api.TestCase
 import com.airsaid.sample.plugin.transform.processor.SampleProcessor
@@ -21,6 +22,7 @@ abstract class SampleAsmClassVisitorFactory : AsmClassVisitorFactory<Instrumenta
       Register::class.java,
       TestCase::class.java,
       Extension::class.java,
+      PathDescription::class.java,
     )
 
     private val PROCESSED_ANNOTATION_CLASSES_NAME = PROCESSED_ANNOTATION_CLASSES.map { it.name }.toHashSet()
