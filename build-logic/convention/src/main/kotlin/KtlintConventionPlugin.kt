@@ -12,7 +12,6 @@ class KtlintConventionPlugin : Plugin<Project> {
       }
 
       val isAndroidProject = plugins.hasPlugin("com.android.application") || plugins.hasPlugin("com.android.library")
-      logger.lifecycle("isAndroidProject: $isAndroidProject")
       extensions.configure<KtlintExtension> {
         debug.set(true)
         android.set(isAndroidProject)
