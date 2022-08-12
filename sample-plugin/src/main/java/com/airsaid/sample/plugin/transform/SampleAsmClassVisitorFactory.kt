@@ -38,6 +38,7 @@ abstract class SampleAsmClassVisitorFactory : AsmClassVisitorFactory<Instrumenta
         return true
       }
     }
+    SampleProcessor.cleanDirtyData(classData.className)
     return false
   }
 

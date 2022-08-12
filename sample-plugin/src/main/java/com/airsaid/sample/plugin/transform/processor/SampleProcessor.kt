@@ -38,4 +38,22 @@ object SampleProcessor : ClassDataProcessor<Unit> {
   fun getExtensionItems(): List<ExtensionItem> = mExtensionItems.values.toList()
 
   fun getPathItems(): List<PathItem> = mPathItems.values.toList()
+
+  /**
+   * For incremental scenarios, if the new class no longer matches,
+   * it needs to be removed from the list to avoid generating dirty data.
+   *
+   * @param notMatchClassName Class names that do not conform to the processing rules.
+   */
+  fun cleanDirtyData(notMatchClassName: String) {
+    if (mSampleItems.containsKey(notMatchClassName)) {
+      mSampleItems.remove(notMatchClassName)
+    }
+    if (mExtensionItems.containsKey(notMatchClassName)) {
+      mExtensionItems.remove(notMatchClassName)
+    }
+    if (mPathItems.containsKey(notMatchClassName)) {
+      mPathItems.remove(notMatchClassName)
+    }
+  }
 }
