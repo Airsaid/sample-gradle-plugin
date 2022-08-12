@@ -1,5 +1,6 @@
 plugins {
   id("sample.android.application")
+  id("sample.ktlint")
   id("com.airsaid.sample")
 }
 

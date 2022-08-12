@@ -6,11 +6,9 @@ import com.airsaid.sample.plugin.constant.Constants.ANDROIDX_FRAGMENT_ACTIVITY_C
 import com.android.build.gradle.AppPlugin
 import org.gradle.api.Project
 import org.gradle.api.Task
-import org.gradle.api.internal.provider.PropertyFactory
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.logging.Logging
 import org.gradle.api.provider.Property
-import org.jetbrains.kotlin.gradle.utils.`is`
 import java.util.Locale
 
 /**

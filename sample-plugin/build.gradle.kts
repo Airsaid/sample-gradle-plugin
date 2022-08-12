@@ -5,6 +5,7 @@ plugins {
   id("org.jetbrains.kotlin.jvm")
   id("com.vanniktech.maven.publish")
   id("org.jetbrains.kotlin.plugin.serialization")
+  id("sample.ktlint")
 }
 
 gradlePlugin {

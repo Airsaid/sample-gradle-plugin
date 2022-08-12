@@ -1,6 +1,7 @@
 plugins {
   id("sample.android.library")
   id("com.vanniktech.maven.publish")
+  id("sample.ktlint")
 }
 
 dependencies {

@@ -31,8 +31,10 @@ class SampleClassVisitor(
     interfaces: Array<out String>?
   ) {
     val interfaceList = (interfaces?.toList() ?: emptyList()).map { it.toFullyQualifiedName() }
-    mClassData = ClassData(name.toFullyQualifiedName(), superName.toFullyQualifiedName(),
-      mAnnotationMap, interfaceList)
+    mClassData = ClassData(
+      name.toFullyQualifiedName(), superName.toFullyQualifiedName(),
+      mAnnotationMap, interfaceList
+    )
     // Here we change the super class name to our appcompat class
     if (superName.isNeedProcessedClassName()) {
       super.visit(version, access, name, signature, SAMPLE_COMPAT_ACTIVITY_CLASS_NAME, interfaces)

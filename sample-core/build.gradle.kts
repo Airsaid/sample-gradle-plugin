@@ -2,6 +2,7 @@ plugins {
   id("sample.android.library")
   id("com.vanniktech.maven.publish")
   id("org.jetbrains.kotlin.plugin.serialization")
+  id("sample.ktlint")
 }
 
 android {

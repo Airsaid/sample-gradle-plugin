@@ -12,6 +12,7 @@ java {
 dependencies {
   implementation(libs.android.gradle.plugin)
   implementation(libs.kotlin.gradle.plugin)
+  implementation(libs.ktlint.gradle.plugin)
 }
 
 gradlePlugin {
@@ -23,6 +24,10 @@ gradlePlugin {
     register("androidLibrary") {
       id = "sample.android.library"
       implementationClass = "AndroidLibraryConventionPlugin"
+    }
+    register("ktlint") {
+      id = "sample.ktlint"
+      implementationClass = "KtlintConventionPlugin"
     }
   }
 }
