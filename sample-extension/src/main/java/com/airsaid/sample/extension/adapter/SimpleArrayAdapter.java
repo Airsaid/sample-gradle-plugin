@@ -10,7 +10,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airsaid.sample.extension.data.SampleData;
+import com.airsaid.sample.extension.utils.SampleHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,11 +31,11 @@ public class SimpleArrayAdapter<E> extends RecyclerView.Adapter<RecyclerView.Vie
   }
 
   public static SimpleArrayAdapter<String> createFromDataProvider(Context context) {
-    return new SimpleArrayAdapter<>(context, SampleData.getStringArray());
+    return new SimpleArrayAdapter<>(context, SampleHelper.getStringArray());
   }
 
   public static SimpleArrayAdapter<String> createFromDataProvider(Context context, int length) {
-    return new SimpleArrayAdapter<>(context, Arrays.copyOfRange(SampleData.getStringArray(), 0, length));
+    return new SimpleArrayAdapter<>(context, Arrays.copyOfRange(SampleHelper.getStringArray(), 0, length));
   }
 
   private final LayoutInflater layoutInflater;

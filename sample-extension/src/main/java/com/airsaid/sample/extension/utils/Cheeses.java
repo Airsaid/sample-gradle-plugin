@@ -1,4 +1,4 @@
-package com.airsaid.sample.extension.data;
+package com.airsaid.sample.extension.utils;
 
 class Cheeses {
 

@@ -1,4 +1,4 @@
-package com.airsaid.sample.extension.data
+package com.airsaid.sample.extension.utils
 
 import android.graphics.Color
 import androidx.fragment.app.FragmentActivity
@@ -8,7 +8,7 @@ import me.jfenn.colorpickerdialog.dialogs.ColorPickerDialog
 /**
  * @author airsaid
  */
-object SampleData {
+object SampleHelper {
 
   @JvmStatic
   fun getRandomColor(): Int {
