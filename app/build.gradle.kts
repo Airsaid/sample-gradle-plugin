@@ -4,6 +4,10 @@ plugins {
   id("com.airsaid.sample")
 }
 
+sample {
+  enableDebug.set(true)
+}
+
 android {
   defaultConfig {
     applicationId = "com.airsaid.sample"
