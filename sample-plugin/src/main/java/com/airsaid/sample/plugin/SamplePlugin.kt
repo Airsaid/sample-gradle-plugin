@@ -15,6 +15,7 @@ import com.android.build.api.instrumentation.FramesComputationMode
 import com.android.build.api.instrumentation.InstrumentationScope
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.gradle.AppExtension
+import com.android.build.gradle.internal.utils.setDisallowChanges
 import com.android.build.gradle.tasks.TransformClassesWithAsmTask
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -56,7 +57,10 @@ class SamplePlugin : Plugin<Project> {
       variant.transformClassesWith(
         SampleAsmClassVisitorFactory::class.java,
         InstrumentationScope.PROJECT
-      ) {}
+      ) { params ->
+        params.invalidate.setDisallowChanges(System.currentTimeMillis())
+        SampleProcessor.clear()
+      }
       variant.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
     }
   }

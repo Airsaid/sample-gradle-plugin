@@ -44,12 +44,11 @@ object AndroidSample {
       configurationField.get(null)?.let { configurationJson ->
         val sampleData = Json.decodeFromString<SampleData>(configurationJson as String)
 
-        val availableSampleItems = sampleData.sampleItems.filter { it.isAvailable }
-        sampleItemList.addAll(availableSampleItems)
-        mergeSampleItems(availableSampleItems)
+        val sampleItems = sampleData.sampleItems
+        sampleItemList.addAll(sampleItems)
+        mergeSampleItems(sampleItems)
 
-        val availableExtensionItems = sampleData.extensionItems.filter { it.isAvailable }
-        availableExtensionItems.forEach { extensionItem ->
+        sampleData.extensionItems.forEach { extensionItem ->
           extensionHandlers.values.forEach { extensionHandler ->
             extensionHandler.handle(
               extensionItem.className,

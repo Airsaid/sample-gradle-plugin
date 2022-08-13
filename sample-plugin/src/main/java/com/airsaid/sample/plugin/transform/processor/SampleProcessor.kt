@@ -4,6 +4,7 @@ import com.airsaid.sample.api.ExtensionItem
 import com.airsaid.sample.api.PathItem
 import com.airsaid.sample.api.SampleItem
 import com.airsaid.sample.plugin.model.ClassData
+import com.airsaid.sample.plugin.util.lifecycle
 
 /**
  * @author airsaid
@@ -39,21 +40,9 @@ object SampleProcessor : ClassDataProcessor<Unit> {
 
   fun getPathItems(): List<PathItem> = mPathItems.values.toList()
 
-  /**
-   * For incremental scenarios, if the new class no longer matches,
-   * it needs to be removed from the list to avoid generating dirty data.
-   *
-   * @param notMatchClassName Class names that do not conform to the processing rules.
-   */
-  fun cleanDirtyData(notMatchClassName: String) {
-    if (mSampleItems.containsKey(notMatchClassName)) {
-      mSampleItems.remove(notMatchClassName)
-    }
-    if (mExtensionItems.containsKey(notMatchClassName)) {
-      mExtensionItems.remove(notMatchClassName)
-    }
-    if (mPathItems.containsKey(notMatchClassName)) {
-      mPathItems.remove(notMatchClassName)
-    }
+  fun clear() {
+    mSampleItems.clear()
+    mExtensionItems.clear()
+    mPathItems.clear()
   }
 }

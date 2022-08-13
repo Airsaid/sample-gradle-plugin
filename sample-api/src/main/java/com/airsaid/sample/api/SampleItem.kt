@@ -17,17 +17,6 @@ data class SampleItem(
   var isTestCase: Boolean = false,
 ) : Comparable<SampleItem> {
 
-  val isAvailable: Boolean
-    get() {
-      try {
-        Class.forName(className)
-        return true
-      } catch (e: ClassNotFoundException) {
-        // Ignore
-      }
-      return false
-    }
-
   fun clazz(): Class<*> = Class.forName(className)
 
   override fun compareTo(other: SampleItem): Int {
