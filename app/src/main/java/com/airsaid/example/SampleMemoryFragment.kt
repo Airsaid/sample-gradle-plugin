@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import com.airsaid.sample.api.Register
 import com.airsaid.sample.extension.component.memory.SampleMemory
 
-@SampleMemory
 @Register(
   title = "SampleMemory",
   desc = "Use @SampleMemory to quickly see the current memory usage on the page."
 )
+@SampleMemory
 class SampleMemoryFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

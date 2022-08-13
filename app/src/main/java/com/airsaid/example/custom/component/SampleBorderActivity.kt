@@ -8,12 +8,12 @@ import com.airsaid.example.R
 import com.airsaid.sample.api.Register
 import com.airsaid.sample.extension.component.code.SampleSourceCode
 
-@SampleBorder
-@SampleSourceCode
 @Register(
   title = "SampleBorder",
   desc = "Demonstrate how to dynamically extension component."
 )
+@SampleBorder
+@SampleSourceCode
 class SampleBorderActivity : AppCompatActivity() {
 
   @SuppressLint("SetTextI18n")

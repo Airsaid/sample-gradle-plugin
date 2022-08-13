@@ -13,14 +13,14 @@ import com.airsaid.sample.api.Register
 import com.airsaid.sample.extension.permission.SamplePermission
 import com.airsaid.sample.extension.permission.addPermissionObserver
 
-@SamplePermission(
-  Manifest.permission.CAMERA,
-  Manifest.permission.READ_EXTERNAL_STORAGE
-)
 @Register(
   title = "SamplePermission",
   desc = "Use @SamplePermission and specify the permissions to be requested to " +
     "automatically request permissions when the page is first opened."
+)
+@SamplePermission(
+  Manifest.permission.CAMERA,
+  Manifest.permission.READ_EXTERNAL_STORAGE
 )
 class SamplePermissionFragment : Fragment() {
 

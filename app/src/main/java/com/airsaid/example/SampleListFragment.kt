@@ -16,15 +16,15 @@ import com.airsaid.sample.extension.component.memory.SampleMemory
 import com.airsaid.sample.extension.component.message.SampleMessage
 import com.airsaid.sample.extension.permission.SamplePermission
 
+@Register(
+  title = "SampleList",
+  desc = "Multiple sample annotations can be used together."
+)
 @SampleMemory
 @SampleMessage
 @SampleSourceCode("SampleListFragment.kt")
 @SampleDocument("assets://sample_document.md")
 @SamplePermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-@Register(
-  title = "SampleList",
-  desc = "Multiple sample annotations can be used together."
-)
 class SampleListFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

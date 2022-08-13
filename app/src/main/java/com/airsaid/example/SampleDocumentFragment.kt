@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import com.airsaid.sample.api.Register
 import com.airsaid.sample.extension.component.document.SampleDocument
 
+@SampleDocument("https://raw.githubusercontent.com/Airsaid/sample-gradle-plugin/master/README.md")
 @Register(
   title = "SampleDocument",
   desc = "Use @SampleDocument to associate documents to sample."
 )
-@SampleDocument("https://raw.githubusercontent.com/Airsaid/sample-gradle-plugin/master/README.md")
 class SampleDocumentFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
