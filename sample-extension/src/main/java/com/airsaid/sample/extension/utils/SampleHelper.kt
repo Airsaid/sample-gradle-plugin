@@ -36,7 +36,7 @@ object SampleHelper {
     width: Int = 200,
     height: Int = 300
   ): String {
-    return "https://picsum.photos/$width/$height"
+    return "https://picsum.photos/id/${Random.nextInt(0, 1000)}/$width/$height"
   }
 
   @JvmStatic
