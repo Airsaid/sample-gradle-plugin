@@ -186,15 +186,4 @@ public class MarkdownView extends WebView {
       }
     }
   }
-
-  @Override
-  public boolean onTouchEvent(MotionEvent event) {
-    if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-      ViewParent parent = getParent();
-      if (parent != null) {
-        parent.requestDisallowInterceptTouchEvent(true);
-      }
-    }
-    return super.onTouchEvent(event);
-  }
 }

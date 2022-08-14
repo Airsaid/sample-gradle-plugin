@@ -1,10 +1,13 @@
 package com.airsaid.sample.extension.component.document;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
@@ -56,6 +59,7 @@ public class SampleDocumentFragment extends Fragment {
   /**
    * 初始化markdown显示进度
    */
+  @SuppressLint("ClickableViewAccessibility")
   private void initLoadProgress() {
     //关联进度显示
     View view = getView();
@@ -76,6 +80,12 @@ public class SampleDocumentFragment extends Fragment {
           sampleProgressBar.passAnimation();
         }
       }
+    });
+    markdownView.setOnTouchListener((View v,  MotionEvent event) -> {
+      if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+        markdownView.getParent().requestDisallowInterceptTouchEvent(true);
+      }
+      return markdownView.onTouchEvent(event);
     });
   }
 
