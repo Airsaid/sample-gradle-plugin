@@ -17,13 +17,13 @@ Due to limited energy, the plugin currently supports only the current newer vers
 - Minimal supported [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin) version: `7.0.0`.
 
 # Setup
-Add the following code to the root project `build.gradle.kts` file:
+1. Add the following code to the root project `build.gradle.kts` file:
 ```kotlin
 plugins {
   id("com.airsaid.sample") version "<latest_version>" apply false
 }
 ```
-Add the following code to the android application project `build.gradle.kts` file:
+2. Add the following code to the android application project `build.gradle.kts` file:
 ```kotlin
 plugins {
   id("com.airsaid.sample")
@@ -33,6 +33,30 @@ dependencies {
   implementation("com.airsaid:sample-extension:<latest_version>")
 }
 ```
+
+<details>
+<summary>Old setup method</summary>
+
+1. Add the following code to the root project `build.gradle.kts` file:
+```kotlin
+buildscript {
+  dependencies {
+    classpath("com.airsaid:sample-gradle:<latest_version>")
+  }
+}
+```
+
+2. Add the following code to the android application project `build.gradle.kts` file:
+```kotlin
+plugins {
+  id("com.airsaid.sample")
+}
+
+dependencies {
+  implementation("com.airsaid:sample-extension:<latest_version>")
+}
+```
+</details>
 
 # How to use
 
