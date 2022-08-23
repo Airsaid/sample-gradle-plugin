@@ -1,29 +1,43 @@
+**English** | [简体中文](README_CN.md)
+
 # sample-gradle-plugin
 
 [![version](https://img.shields.io/maven-central/v/com.airsaid/sample-plugin)](https://search.maven.org/artifact/com.airsaid/sample-plugin)
 [![license](https://img.shields.io/github/license/airsaid/statelayout)](LICENSE)
 
-:rocket: A powerful gradle plugin to help you demonstrate your android app.
+:rocket: A powerful Gradle Plugin to help you demonstrate your android app.
 
-We often have to write sample applications that contain a lot of boilerplate code, such as lists with jumps, fake data, etc.
+We often write demo applications that contain a lot of template code, such as lists of different
+demo cases, jump logic, application permissions and fake data, and more.
 
-SamplePlugin can automatically generate this template code through annotations and provide components for quick viewing of the documentation and source code on the application, etc. making it easier for people viewing the sample application to understand the sample.
+SamplePlugin provides various components through annotations and automatically generates this
+template code so that people viewing the demo application can understand the application more
+easily.
+
+> Download the sample apk to see more: [Sample APK](sample.apk).
 
 # Minimal supported versions
 
-Due to limited energy, the plugin currently supports only the current newer versions.
+Due to limited effort, SamplePlugin is currently supported up to version 7.x:
 
 - Minimal supported [Gradle](https://www.gradle.org) version: `7.0.2`.
-- Minimal supported [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin) version: `7.0.0`.
+- Minimal
+  supported [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin)
+  version: `7.0.0`.
 
 # Setup
+
 1. Add the following code to the root project `build.gradle.kts` file:
+
 ```kotlin
 plugins {
   id("com.airsaid.sample") version "<latest_version>" apply false
 }
 ```
-2. Add the following code to the android application project `build.gradle.kts` file:
+
+2. Add the following code to the android application project (app by default) `build.gradle.kts`
+   file:
+
 ```kotlin
 plugins {
   id("com.airsaid.sample")
@@ -38,6 +52,7 @@ dependencies {
 <summary>Old setup method</summary>
 
 1. Add the following code to the root project `build.gradle.kts` file:
+
 ```kotlin
 buildscript {
   dependencies {
@@ -46,7 +61,9 @@ buildscript {
 }
 ```
 
-2. Add the following code to the android application project `build.gradle.kts` file:
+2. Add the following code to the android application project (app by default) `build.gradle.kts`
+   file:
+
 ```kotlin
 plugins {
   id("com.airsaid.sample")
@@ -56,24 +73,28 @@ dependencies {
   implementation("com.airsaid:sample-extension:<latest_version>")
 }
 ```
+
 </details>
 
 # How to use
 
-Write your sample code in the `activity` or `fragment` and set the `@Register` annotation to the class to register.
+Register as an example by adding the `@Register` annotation to the `activity` or `fragment` class (
+or other supported component) for which the example code is written. For example:
 
-For example:
 ```kotlin
 @Register
 class DemoFragment : Fragment() {
   ...
 }
 ```
-Then run the application and the item containing the sample page will appear in the list.
 
-By default, we use the class name as the title of the item. Alternatively, the `@Register` annotation attributes can be used to set the title and description of the current item in the list.
+Then we run the application and we can see that the example we just registered has appeared in the
+automatically generated list.
 
-For example:
+By default, the title of each example item in the list is the class name of the example. If you want
+to change the title or add a description, you can add the `title` and `desc` attributes to the
+annotation. For example:
+
 ```kotlin
 @Register(title = "Demo", desc = "Demonstrate how to use.")
 class DemoFragment : Fragment() {
@@ -81,9 +102,11 @@ class DemoFragment : Fragment() {
 }
 ```
 
-For the organization of relationships between multiple sample, we use package names by default.
+For the case of multiple examples, we organize the relationship between the examples by package
+name.
 
-For example. this is your project structure:
+For example, suppose this is the structure of your project:
+
 ```
 com.airsaid.demo.fragment
     FragmentDemo1.kt
@@ -93,7 +116,8 @@ com.airsaid.demo.ui
     ViewDemo2.kt
 ```
 
-Your demo will look like this list:
+The result of the automatic generation of the demo list is:
+
 ```
 |-- fragment
   |-- FragmentDemo1
@@ -102,9 +126,10 @@ Your demo will look like this list:
   |-- ViewDemo1
   |-- ViewDemo2
 ```
-That's all, You don't need to do anything. Or you can specify it manually using the `path` attribute of the `@Register` annotation.
 
-For example:
+That's all, You don't need to do anything. Or you can specify it manually using the `path` attribute
+of the `@Register` annotation. For example:
+
 ```kotlin
 @Register(path = "android/view")
 class DemoFragment : Fragment() {
@@ -114,9 +139,13 @@ class DemoFragment : Fragment() {
 
 ## Working with testcase
 
-Imagine you have a vast demonstration app, and finding one demo is hard. So you may want to open it directly whenever you launch your app.
+Imagine you have a vast demonstration app, and finding one demo is hard. So you may want to open it
+directly whenever you launch your app.
 
-The solution is to annotate your component with `@TestCase`:
+The solution is to use the `@TestCase` annotation, which specifies a test case that will be
+automatically opened when you start the application. In the case of specifying multiple test cases,
+a dialog will alert for you to select:
+
 ```kotlin
 @TestCase
 @Register
@@ -125,13 +154,13 @@ class DemoFragment : Fragment() {
 }
 ```
 
-For more testcases I will help you pop up a dialog, and you can choose your demo.
-
 ## Working with extension
 
 We provide a number of extension annotations to easily add additional demos to the sample.
 
-For example, When you use `@SampleSourceCode,` it will help you generate a ViewPager and put your source code as a list:
+For example, When you use `@SampleSourceCode`, it will help you generate a ViewPager and put your
+source code as a list:
+
 ```kotlin
 @SampleSourceCode
 @Register
@@ -140,11 +169,13 @@ class DemoFragment : Fragment() {
 }
 ```
 
-The following extension annotations are now supported.
+Currently, the sample framework itself provides the following extension annotations. Or you can
+extend it yourself, as seen in the sample application.
 
 ### @SampleDocument
 
 Display the related document. For example:
+
 ```kotlin
 // You can specify the documents in the assets directory:
 @SampleDocument("assets://sample_document.md")
@@ -160,11 +191,13 @@ class SampleDocumentFragment : Fragment() {
   ...
 }
 ```
+
 <img width="300" height="630" src="preview/document.png"/>
 
 ### @SampleSourceCode
 
 Display the source file. For example:
+
 ```kotlin
 // By default, all source classes of the package where the current class is located are displayed.
 @SampleSourceCode
@@ -178,27 +211,31 @@ class SampleSourceCodeFragment : Fragment() {
   ...
 }
 ```
+
 <img width="300" height="630" src="preview/source_code.png"/>
 
 ### @SampleMessage
 
 Display the test message. For example:
+
 ```kotlin
 @SampleMessage
 @Register(
   title = "SampleMessage",
   desc = "Use @SampleMessage to take the messages output by System.out " +
-    "and display them on the page."
+      "and display them on the page."
 )
 class SampleMessageFragment : Fragment() {
   ...
 }
 ```
+
 <img width="300" height="630" src="preview/message.png"/>
 
 ### @SampleMemory
 
 Display the runtime memory. For example:
+
 ```kotlin
 @SampleMemory
 @Register(
@@ -209,11 +246,13 @@ class SampleMemoryFragment : Fragment() {
   ...
 }
 ```
+
 <img width="300" height="630" src="preview/memory.png"/>
 
 ### @SamplePermission
 
 Automatically request specified permissions. For example:
+
 ```kotlin
 @SamplePermission(
   Manifest.permission.CAMERA,
@@ -222,7 +261,7 @@ Automatically request specified permissions. For example:
 @Register(
   title = "SamplePermission",
   desc = "Use @SamplePermission and specify the permissions to be requested to " +
-    "automatically request permissions when the page is first opened."
+      "automatically request permissions when the page is first opened."
 )
 class SamplePermissionFragment : Fragment() {
 
@@ -230,9 +269,11 @@ class SamplePermissionFragment : Fragment() {
     super.onActivityCreated(savedInstanceState)
     addPermissionObserver { result ->
       if (result.granted) {
-        Toast.makeText(context, "${result.name} Permission request successful!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "${result.name} Permission request successful!", Toast.LENGTH_SHORT)
+          .show()
       } else {
-        Toast.makeText(context, "${result.name} Permission request failed!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "${result.name} Permission request failed!", Toast.LENGTH_SHORT)
+          .show()
       }
     }
   }
@@ -244,12 +285,14 @@ class SamplePermissionFragment : Fragment() {
 
 - **app**: the demo app.
 - **sample-api**: common api for both library and plugin.
-- **sample-core**: the core library. It supports the basic action processor and extension.
-- **sample-extension**: based on the core. It helps us implements all the extensions, such as components and functions.
-- **sample-plugin**: this Gradle Plugin helps us collect all the sample, testcases, extensions.
-
+- **sample-core**: the core library. Support for core APIs such as the base action processor.
+- **sample-extension**: the extension library. Based on the core library, it provides all kinds of
+  extended functions.
+- **sample-plugin**: GradlePlugin for collecting annotation information at compile time and
+  modifying bytecode files.
 
 # License
+
 ```
 Copyright 2022 Airsaid. https://github.com/airsaid
 
