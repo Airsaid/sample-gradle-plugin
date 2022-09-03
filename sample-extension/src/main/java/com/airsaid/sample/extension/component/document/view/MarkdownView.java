@@ -4,19 +4,16 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewParent;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 
 import androidx.annotation.WorkerThread;
 
 import com.airsaid.sample.extension.utils.IOUtils;
-
 import com.airsaid.sample.extension.utils.UrlConnections;
+import com.airsaid.sample.extension.view.NestedWebView;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +28,7 @@ import java.util.concurrent.Executors;
  *
  * @author JackChen
  */
-public class MarkdownView extends WebView {
+public class MarkdownView extends NestedWebView {
   public static final String BASE_URL = "file:///android_asset/";
   private static final Executor threadExecutor = Executors.newSingleThreadExecutor();
 
