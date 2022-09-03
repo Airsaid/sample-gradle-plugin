@@ -8,7 +8,7 @@ commonsIo = "2.8.0"
 archUnit = "0.16.0"
 asm = "7.0"
 gradleTestToolkit = "1.0.3"
-samplePlugin = "1.1.0"
+samplePlugin = "1.1.2"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "androidPlugin" }
