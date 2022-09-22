@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airsaid.sample.extension.R;
-import com.cz.widget.recyclerview.adapter.support.tree.TreeAdapter;
-import com.cz.widget.recyclerview.adapter.support.tree.TreeNode;
+import com.airsaid.sample.extension.adapter.tree.TreeAdapter;
+import com.airsaid.sample.extension.adapter.tree.TreeNode;
 
 /**
  * @author JackChen

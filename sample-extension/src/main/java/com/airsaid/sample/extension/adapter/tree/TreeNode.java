@@ -1,7 +1,5 @@
 package com.airsaid.sample.extension.adapter.tree;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,7 +34,7 @@ public class TreeNode<E> {
    */
   public boolean isLoad;
 
-  public TreeNode(@NonNull E item) {
+  public TreeNode(E item) {
     this(null, item);
   }
 

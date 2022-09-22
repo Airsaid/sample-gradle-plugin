@@ -34,7 +34,6 @@ gradle-test-toolkit = { module = "io.github.jackchen365:gradle-test-toolkit", ve
 commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
 java-asm = { module = "org.ow2.asm:asm", version.ref = "asm" }
 java-asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
-recyclerview-library = { module = "com.github.momodae.RecyclerViewLibrary2:adapter", version = "1.0.1" }
 colorpicker = { module = "me.jfenn.ColorPickerDialog:base", version = "0.2.2" }
 viewpager2 = { module = "androidx.viewpager2:viewpager2", version = "1.0.0" }
 

@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airsaid.sample.extension.R;
+import com.airsaid.sample.extension.adapter.tree.TreeNode;
 import com.airsaid.sample.extension.component.code.adapter.SampleSourceCodeAdapter;
-import com.cz.widget.recyclerview.adapter.support.tree.TreeNode;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.IOException;

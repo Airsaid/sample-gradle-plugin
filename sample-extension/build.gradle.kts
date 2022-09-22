@@ -10,7 +10,6 @@ dependencies {
   implementation(libs.androidx.constraintlayout)
   implementation(libs.android.material)
   implementation(libs.androidx.startup.runtime)
-  implementation(libs.recyclerview.library)
   implementation(libs.colorpicker)
   implementation(libs.viewpager2)
   api(projects.sampleCore)
