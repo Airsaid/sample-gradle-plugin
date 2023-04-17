@@ -43,6 +43,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "androidPlugin" }
 android-library = { id = "com.android.library", version.ref = "androidPlugin" }
-vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.21.0" }
+vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.25.2" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintPlugin" }
 sample = { id = "com.airsaid.sample", version.ref = "samplePlugin" }
